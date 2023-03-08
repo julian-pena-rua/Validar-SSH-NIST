@@ -1,0 +1,254 @@
+#----------------------------------------------------------------------------------------------------------
+# AUTOR: 	Julian A. Peña
+# FECHA: 	22/02/2023
+# VERSION:	1.0.0 
+# SITIO: 	https://julian-pena-rua.github.io/cv/
+# Descripcion: 
+# 	Este es un archivo que sigue la estructura del sshd_original con las configuracion recomendada por la NIST. 
+# 	Para mas informacion ver http://dx.doi.org/10.6028/NIST.IR.7966 En la parte de abajo se encuentran 
+# 	separados escenarios de configuracion. Para usar un escenario debe de descomentar los elementos 
+#       que se encuentran desde el comando match hasta siguiente escenario. 
+# 	NOTA: Solo usar un escenario a la vez.
+#
+# Tener en cuenta las recomendaciones de las caracterìsticas de las màquinas del cliente.
+#----------------------------------------------------------------------------------------------------------
+
+# INCLUSIONES:
+	Include /etc/ssh/sshd_config.d/*.conf
+
+# DIRECCIONES:
+	#Port 22
+	#AddressFamily any
+	#ListenAddress 0.0.0.0
+	#ListenAddress ::
+
+# HOSTKEYS:
+	#HostKey /etc/ssh/ssh_host_rsa_key
+	#HostKey /etc/ssh/ssh_host_ecdsa_key
+	#HostKey /etc/ssh/ssh_host_ed25519_key
+	
+# Especificar la ruta donde se almacenará la huella digital del servidor.
+	# Definir
+
+# CIPHER Y LLAVES:
+	#RekeyLimit default none
+	
+# Configurar politicas de longitud y algoritmos aceptables
+	#KexAlgorithms <algoritmo_aceptable_1>,<algoritmo_aceptable_2>,...,    <algoritmo_aceptable_n>
+	#Ciphers <algoritmo_cifrado_aceptable_1>,<algoritmo_cifrado_aceptable_2>,...,<algoritmo_cifrado_aceptable_n>"
+	#MACs <algoritmo_mac_aceptable_1>,<algoritmo_mac_aceptable_2>,...,<algoritmo_mac_aceptable_n>
+	#HostKeyAlgorithms <algoritmo_clave_aceptable_1>,<algoritmo_clave_aceptable_2>,...,<algoritmo_clave_aceptable_n>
+	#ServerKeyBits <longitud_clave_aceptable>
+	
+# Deshabilitar uso de algoritmos y longitud clave no seguros
+	#Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+	#KexAlgorithms diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha256
+	#MACs hmac-sha2-512,hmac-sha2-256
+	#HostKeyAlgorithms ssh-rsa,ssh-ed25519
+	
+# Crear un proceso de gestión de claves para detectar y reemplazar las claves que no cumplan con las políticas de longitud de clave y algoritmo establecidas.
+	# Definir
+	
+# Monitorizar el uso de las claves y reemplazarlas cuando sea necesario.
+	# Definir
+	
+# LOGGING [REGISTROS]: 
+	#SyslogFacility AUTH
+	#LogLevel INFO 	# LogLevel {VERBOSE, DEBUG, INFO}
+	#ForceCommand mv log.txt ~/Documents # Mover a carpeta a lugar seguro y fàcil acceso
+	
+# GUARDAR REGISTROS [LOGGIN]: 
+	# Definir
+
+# CONFIGURAR SISTEMA SEGUIMIENTO Y ANALISIS DE REGISTROS [LOGGING]: 
+	# Definir
+
+# AUTENTICACION:
+	#LoginGraceTime 2m
+	#PermitRootLogin prohibit-password
+	#StrictModes yes
+	#MaxAuthTries 6
+	#MaxSessions 10
+
+# ESPECIFICAR USUARIOS GRUPOS Y PERMISOS: 
+	#DenyUsers bichoj
+	
+	#AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
+
+
+# ESPECIFICAR GRUPOS Y PERMISOS:
+	#DenyGroups
+	
+	#AllowGroups
+
+# SISTEMA DE DETECCION DE INTRUSOS (IDS) PARA MONITOREAR [USUARIOS, GRUPOS]: 
+	# Definir
+
+# ESPECIFICAR COMANDO QUE INICIA LUEGO DE AUTENTICAR: en lugar de permitir que el usuario interactúe con el sistema.
+	#Match User bichoj
+	#ForceCommand /home/bichoj/desktop
+	#ForceCommand internal-sftp
+	#ForceCommand /bin/bash -ic $SSH_ORIGINAL_COMMAND ls
+	#ForceCommand /bin/bash -s < $SSH_ORIGINAL_COMMAND
+	#ForceCommand /bin/bash -c $SSH_ORIGINAL_COMMAND
+	#ForceCommand /usr/sbin/pingid_fc
+	#ForceCommand /bin/echo 'Funciona la restriccion.'
+
+# REGISTRO Y AUDITORIA: 
+	AuditLog yes
+
+# HABILITAR AUTENTICACION POR LLAVE PUBLICA: Esto habilitará la autenticación mediante clave pública para las conexiones SSH. Asegúrese de que esté establecida en "yes". 
+	#PubkeyAuthentication yes
+	
+# HABILITAR AUTENTICACION POR CONTRASENA: Esto habilitará la autenticación de contraseña para las conexiones SSH. asegúrese de que esté establecida en "yes". To disable tunneled clear text passwords, change to no here!
+	#PasswordAuthentication yes
+	#PermitEmptyPasswords no
+
+# Establecer un directorio donde se almacenarán las claves de identidad aprobada. Este archivo debe tener permisos de lectura solo para el usuario y grupo roo
+	#AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
+	#AuthorizedKeysFile %h/.ssh/authorized_keys
+	
+	#AuthorizedPrincipalsFile none
+
+# ESTABLECER RUTA CLAVES AUTORIZADAS Y REGLAS EXPIRACION:
+	#AuthorizedKeysCommand /usr/bin/authorizedkeys_command.sh
+	#AuthorizedKeysCommand none
+
+# ESTABLECER USUARIO QUE EJECUTA COMANDO:
+	#AuthorizedKeysCommandUser nobody
+	
+# ESTABLECER SISTEMA DE REVOCACION DE CLAVES:
+	# Definir
+	
+# MONITOREAR EL USO DE LAS CLAVES Y REVOCAR EN CASOS SOSPECHOSOS E INTENTOS DE ATAQUE: 
+	# Definir
+
+# PERMITIR CONEXION DEL HOST 
+	#PermitOpen 192.168.1.10:22
+
+# HABILITAR TUNELES: Para deshabilitar la creaciòn de tuneles establecer "no"
+	#PermitTunnel no
+
+# PARA QE FUNCIONE: 
+# Necesita tener las llaves en la ruta /etc/ssh/ssh_known_hosts
+	#HostbasedAuthentication no
+# Cambiar a "yes" si no confia ~/.ssh/known_hosts 
+	# HostbasedAuthentication
+	#IgnoreUserKnownHosts no
+#Para no leer los archivos ~/.rhosts y ~/.shosts del usuario
+	#IgnoreRhosts yes
+
+
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+	KbdInteractiveAuthentication no
+
+# OPCIONES KERBEROS: 
+	#KerberosAuthentication no
+	#KerberosOrLocalPasswd yes
+	#KerberosTicketCleanup yes
+	#KerberosGetAFSToken no
+
+# OPCIONES GSSAPI:
+	#GSSAPIAuthentication no
+	#GSSAPICleanupCredentials yes
+	#GSSAPIStrictAcceptorCheck yes
+	#GSSAPIKeyExchange no
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the KbdInteractiveAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via KbdInteractiveAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and KbdInteractiveAuthentication to 'no'.
+	UsePAM yes
+
+# OPCIONES VARIADAS: 
+	#AllowAgentForwarding yes
+	#AllowTcpForwarding yes
+	#GatewayPorts no
+	X11Forwarding yes
+	#X11DisplayOffset 10
+	#X11UseLocalhost yes
+	#PermitTTY yes
+	PrintMotd no
+	#PrintLastLog yes
+	#TCPKeepAlive yes
+	#PermitUserEnvironment no
+	#Compression delayed
+	#ClientAliveInterval 0
+	#ClientAliveCountMax 3
+	#UseDNS no
+	#PidFile /run/sshd.pid
+	#MaxStartups 10:30:100
+	#PermitTunnel no
+	#ChrootDirectory none
+	#VersionAddendum none
+
+# no default banner path
+	#Banner none
+
+# Allow client to pass locale environment variables
+	AcceptEnv LANG LC_*
+
+# override default of no subsystems
+	Subsystem	sftp	/usr/lib/openssh/sftp-server
+
+#----------------------------------------------------------------------------------------------------------
+# CONFIGURACION EJMEPLO
+#----------------------------------------------------------------------------------------------------------
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	PermitTTY no
+#	ForceCommand cvs server
+
+#----------------------------------------------------------------------------------------------------------
+# CONFIGURACIONES RECOMENDADAS NIST
+#----------------------------------------------------------------------------------------------------------
+
+#=============
+# Escenario 1
+#=============
+#Match User bichoj Address *,!192.168.x.x
+# 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
+#	DenyUsers backup soporte administracion
+# 	ForceCommand /bin/echo FECHA_ACTUAL=$(date +'%d/%m/%Y %H:%M:%S')
+#	ForceCommand /bin/echo "conectado el usuario 24"
+# 	ForceCommand /bin/echo IP=$(hostname -I)
+#	ForceCommand /bin/echo "$FECHA_ACTUAL - $USER - $IP - Conexion aprobada" >> registro_auth.txt
+# 	PasswordAuthentication no
+#	PermitRootLogin prohibit-password
+#	AllowTcpForwarding yes
+#	LoginGraceTime 2m
+#	StrictModes yes
+#	MaxAuthTries 6
+#	MaxSessions 10
+#       AllowAgentForwarding yes
+#       PermitListen 127.0.0.1:2223
+#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
+	
+
+#=============
+# Escenario 2
+#=============
+#Match User test-guest-1 test-guest-2
+# 	ForceCommand /bin/bash 'FECHA=$(date +'%d/%m/%Y')'
+#	ForceCommand /bin/echo 'conectado desde sesiòn invitado'
+#	ForceCommand /bin/bash '$FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
+# 	PasswordAuthentication no
+# 	PermitTunnel no
+#       PermitOpen 192.168.10.2
+
+
+#=============
+# Escenario 3
+#=============
+#Match Group usuarios_no_ssh
+# 	PasswordAuthentication yes
+#	ForceCommand /bin/bash 'FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
+#	ForceCommand /bin/echo 'Ingreso normal detectado'
