@@ -214,13 +214,11 @@
 #=============
 # Escenario 1
 #=============
-#Match User bichoj Address *,!192.168.x.x
+ Match User bichoj 
 # 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
 #	DenyUsers backup soporte administracion
-# 	ForceCommand /bin/echo FECHA_ACTUAL=$(date +'%d/%m/%Y %H:%M:%S')
-#	ForceCommand /bin/echo "conectado el usuario 24"
-# 	ForceCommand /bin/echo IP=$(hostname -I)
-#	ForceCommand /bin/echo "$FECHA_ACTUAL - $USER - $IP - Conexion aprobada" >> registro_auth.txt
+#	ForceCommand internal-sftp 
+	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
 # 	PasswordAuthentication no
 #	PermitRootLogin prohibit-password
 #	AllowTcpForwarding yes
@@ -228,13 +226,13 @@
 #	StrictModes yes
 #	MaxAuthTries 6
 #	MaxSessions 10
-#       AllowAgentForwarding yes
-#       PermitListen 127.0.0.1:2223
-#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
+#   AllowAgentForwarding yes
+#   PermitListen 127.0.0.1:2223
+#   AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
 	
 
 #=============
-# Escenario 2
+# Escenario 2 - Parte 1
 #=============
 #Match User test-guest-1 test-guest-2
 # 	ForceCommand /bin/bash 'FECHA=$(date +'%d/%m/%Y')'
@@ -242,11 +240,11 @@
 #	ForceCommand /bin/bash '$FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
 # 	PasswordAuthentication no
 # 	PermitTunnel no
-#       PermitOpen 192.168.10.2
+#   PermitOpen 192.168.10.2
 
 
 #=============
-# Escenario 3
+# Escenario 2 - Parte 2
 #=============
 #Match Group usuarios_no_ssh
 # 	PasswordAuthentication yes
