@@ -11,7 +11,7 @@
 # SITIO: 				https://julian-pena-rua.github.io/cv/
 # DESCRIPCIÓN:	
 # 	Guía de cómo crear un programa Bat basado en los siguientes recursos:
-#       - https://github.com/Idnan/bash-guide
+#       	- https://github.com/Idnan/bash-guide
 #		- https://github.com/Am0rphous/Bash
 #		- https://learnxinyminutes.com/docs/es-es/bash-es/
 #-------------------------------------------------------------------------------------------
