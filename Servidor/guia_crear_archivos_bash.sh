@@ -7,7 +7,7 @@
 # AUTOR: 				Julian A. Peña
 # VERSIÓN: 				1.0.0
 # FECHA CREACIÓN:       22/02/2023
-# FECHA MODIFICACIÓN:   07/03/2023
+# FECHA MODIFICACIÓN:   13/03/2023
 # SITIO: 				https://julian-pena-rua.github.io/cv/
 # DESCRIPCIÓN:	
 # 	Guía de cómo crear un programa Bat basado en los siguientes recursos:
@@ -16,8 +16,12 @@
 #		- https://learnxinyminutes.com/docs/es-es/bash-es/
 #-------------------------------------------------------------------------------------------
 		
-# Como te habrás dado cuenta, los comentarios en shell empiezan con #.
+# Como te habrás dado cuenta, los comentarios en Bash Shell empiezan con #.
 
+
+# ==============
+# MENSAJES POR CONSOLA
+# ===============
 # Ejemplo sencillo para imprimir hola mundo:
 echo "¡Hola mundo!"
 
@@ -70,11 +74,11 @@ clear
 # ==============
 # OPERACIONES CON VARIABLES
 # ===============
-set numero1=2
-ser numero2=43
+numero1=2
+numero2=43
 # Podemos multiplicarlas, sumarlas, etc... con /a:
-set /a suma= %numero1% + %numero2%  		
-echo %suma%
+suma= $numero1 + $numero2  		
+echo $suma
 pause
 
 # ==============

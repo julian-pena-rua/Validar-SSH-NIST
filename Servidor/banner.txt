@@ -1,0 +1,1 @@
+Bienvenido al servidor SSH. Por favor, asegúrese de cumplir con las políticas de seguridad establecidas antes de continuar.
