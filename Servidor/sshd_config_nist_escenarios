@@ -257,6 +257,7 @@
 # # 	CONFIGURACION DE EJMEPLO
 # ========================================================================================================
 # Ejemplo de sobre escritura de configuración por usuario
+# ----------------------------------------------------
 #Match User anoncvs
 #	X11Forwarding no
 #	AllowTcpForwarding no
@@ -278,6 +279,8 @@
 # 		| Clientes |  3  |
 # 		| Servicio | SFTP| Predeterminado
 #
+# 	NOTA: En esta configuración no se utiliza el match dado que es la configuración inicial o predeterminada al instalar OpenSSH
+#
 	Include /etc/ssh/sshd_config.d/*.conf
 	KbdInteractiveAuthentication no
 	UsePAM yes
@@ -285,45 +288,53 @@
 	PrintMotd no
 	AcceptEnv LANG LC_*
 	Subsystem	sftp	/usr/lib/openssh/sftp-server
-# 
+#
+#
 # -------------------------------------------------------------------------------------------------------
 
 
 # ESCENARIO 2: 
 # ------------
 # 	Configuraciones servidor SSH específicas instalación para 4 grupos de usuarios y 3 servicios
-#		| Servidor      |   1   |
-# 		| Administrador |   1   |
-#		| Soporte 		|   1   |
-# 		| Backup 		|   1   |
-# 		| Clientes 		|   2   |
-# 		| Servicio 		| Email |
-# 		| Servicio 		|   DB  |
-# 		| Servicio 		|  SFPT |
-#		
+#	---------------------------------
+#	|Tipo		| Nombre      		|Cantidad|
+#	| Usuario	| Anonimo	      	|   1    |
+# 	| Usuario	| Administrador 	|   1    |
+#	| Grupo		| Soporte 		|   1    |
+# 	| Grupo		| Backup 		|   1    |
+# 	| Grupo		| Clientes 		|   2    |
+# 	| Servicio 	|  Email 		|   1    |
+# 	| Servicio 	|   DB   		|   1    |
+# 	| Servicio  	|   SFPT 		|   1    |
+#   ----------------------------------	
+#
 # Parámetros:
-#	- Puerto de escucha de SSH al 543. 
-# 	- Máximo número de intentos de autenticar sesión 3. 
-#	- Tiempo de espera antes de que un cliente pueda volver a intentar la autenticación 30 segundos. 
-#	- Restringe los permisos del directorio de inicio del usuario a grupo clientes y soporte. 
-#	- Restringir cifrados y algoritmos de clave a grupo clientes y backup con Ciphers aes256-ctr,aes192-ctr,aes128-ctr 
-#	- Restringir la lista de MAC e IP para que sólo acceda a la cuenta de administración desde una máquina, las restantes, cuentas predeterminadas con roles administrativos, deben estar deshabilitadas. 
+#	[X] Puerto de escucha de SSH al 543. 
+# 	[X] Máximo número de intentos de autenticar sesión 3. 
+#	[X] Tiempo de espera antes de que un cliente pueda volver a intentar la autenticación 30 segundos. 
+#	[-] Restringe los permisos del directorio de inicio del usuario a grupo clientes y soporte. 
+#	[ ] Restringir cifrados y algoritmos de clave a grupo clientes y backup con Ciphers aes256-ctr,aes192-ctr,aes128-ctr 
+#	[ ] Restringir la lista de MAC e IP para que sólo acceda a la cuenta de administración desde una máquina, las restantes, cuentas predeterminadas con roles administrativos, deben estar deshabilitadas. 
 # 
 # 
-#Match Address *,!192.168.x.x
-# 	Port 543
-# 	AllowGroups clientes
-# 	AllowUsers soporte, backup
-#	DenyUsers administrador
+
+#AllowGroups clientes
+#AllowUsers soporte backup
+#DenyUsers administrador
+
+
+#Match User bichoj
+#	Port 22  (ERROR)
+#	MaxAuthTries 3
+#	MaxSessions 10
+#	LoginGraceTime 30s (ERROR)
 #	ForceCommand internal-sftp 
 #	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+#	ForceCommand /bin/bash ./Desktop/bash_codes/sftp-setup.sh; exec bash -l
 # 	PasswordAuthentication no
 #	PermitRootLogin prohibit-password
 #	AllowTcpForwarding yes
-#	LoginGraceTime 2m
 #	StrictModes yes
-#	MaxAuthTries 6
-#	MaxSessions 10
 #       AllowAgentForwarding yes
 #       PermitListen 127.0.0.1:2223
 #       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
@@ -379,5 +390,8 @@
 # 	PasswordAuthentication yes
 #	ForceCommand /bin/bash 'FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
 #	ForceCommand /bin/echo 'Ingreso normal detectado'
-
+#Match Address *,!192.168.x.x
+#
+#
+#
 # -------------------------------------------------------------------------------------------------------

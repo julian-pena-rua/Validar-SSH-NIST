@@ -6,7 +6,8 @@
 :: FECHA CREACIÓN:       	22/02/2023
 :: FECHA MODIFICACIÓN:   	13/03/2023
 :: SITIO: 					https://julian-pena-rua.github.io/cv/
-:: DESCRIPCIÓN:	
+:: DESCRIPCIÓN:
+:: 	NO ES UN ARCHIVO EJECUTABLE REAL	
 :: 	Guía de cómo crear un programa Bat basado en los siguientes recursos:
 ::  	- https://www.cristalab.com/tutoriales/programacion-batch-con-archivos-.bat-c48410l/
 ::		- https://learn.microsoft.com/es-mx/windows-server/administration/windows-commands/echo
