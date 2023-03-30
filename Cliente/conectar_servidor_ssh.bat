@@ -98,7 +98,8 @@
 		timeout /t 2 /nobreak >nul 	
 	cls
 
-	start plink.exe -ssh -t -P %port% %username%@%hostname% -pw %password% ls
+	start plink.exe -ssh -t -P %port% %username%@%hostname% -pw %password%
+
 	timeout /t 2 /nobreak >nul 	
 
 	:: Envía teclas
