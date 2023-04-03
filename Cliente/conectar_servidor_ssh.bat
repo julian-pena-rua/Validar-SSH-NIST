@@ -39,7 +39,7 @@
 	set username=bichoj
 	set password=123456789
 	set hostname=192.168.214.128
-	set port=
+	set port=543
 	
 :: Setencia IF la cual valida que se defina un puerto sino establece por defecto (22)
 	if "%port%"=="" set port=22
