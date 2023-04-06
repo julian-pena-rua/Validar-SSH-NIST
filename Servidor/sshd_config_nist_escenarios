@@ -290,6 +290,7 @@
 	PrintMotd no
 	AcceptEnv LANG LC_*
 	Subsystem	sftp	/usr/lib/openssh/sftp-server
+	
 #
 #
 # -------------------------------------------------------------------------------------------------------
@@ -328,8 +329,9 @@
 	Port 543  
 	LoginGraceTime 30s
 	ForceCommand internal-sftp; exec bash -l 
+	#Subsystem       sftp    internal-sftp
 	Ciphers aes128-ctr,aes192-ctr,aes256-ctr
-
+	
 #AllowGroups clientes
 #AllowUsers soporte backup
 #DenyUsers administrador
@@ -348,6 +350,9 @@ Match User bichoj
 #       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
 
 
+Match User test-guest-1
+	ChrootDirectory /home/bichoj/
+	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
 # Match Address !192.168.x.x
 # 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3 backup soporte administrador
 #	ForceCommand internal-sftp 
