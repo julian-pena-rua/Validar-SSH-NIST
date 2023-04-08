@@ -2,7 +2,7 @@
 # La primera línea del script es el [shebang](http://en.wikipedia.org/wiki/Shebang_(Unix)) que le indica al sistema 
 # cómo ejecutar el script.
 #-------------------------------------------------------------------------------------------
-# GUIA CREACION ARCHIVO .BAT 
+# GUIA CREACION ARCHIVO .SH 
 # NIVEL: 				BÁSICO
 # AUTOR: 				Julian A. Peña
 # VERSIÓN: 				1.0.0
@@ -11,7 +11,7 @@
 # SITIO: 				https://julian-pena-rua.github.io/cv/
 # DESCRIPCIÓN:	
 # 	Guía de cómo crear un programa Bat basado en los siguientes recursos:
-#       - https://github.com/Idnan/bash-guide
+#       	- https://github.com/Idnan/bash-guide
 #		- https://github.com/Am0rphous/Bash
 #		- https://learnxinyminutes.com/docs/es-es/bash-es/
 #-------------------------------------------------------------------------------------------

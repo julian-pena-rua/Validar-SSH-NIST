@@ -4,6 +4,7 @@ Archivos de automatización para realizar pruebas donde se revisa cumplimiento d
 
 ## Pendiente
 [ ] Configuración archivo sshd_config según documento excel Configuraciones SSH en sección NIST
+
 [ ] Eliminar credenciales de cliente almacenados de conexiones ssh remotas
 
 ## Hecho
