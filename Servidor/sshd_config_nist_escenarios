@@ -1,194 +1,228 @@
-#----------------------------------------------------------------------------------------------------------
-# Este es un archivo con las configuracion recomendada por la NIST.
+# ----------------------------------------------------------------------------------------------------------
+# Este es un archivo con los comandos y configuraciones recomendadas por la NIST.
 # Para mas informacion ver: 
 #	http://dx.doi.org/10.6028/NIST.IR.7966
 # Tener en cuenta las recomendaciones de las caracterìsticas de las màquinas del cliente.
-#----------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------
 
 # INCLUSIONES:
-		Include /etc/ssh/sshd_config.d/*.conf
+# -------------------
+##Include /etc/ssh/sshd_config.d/*.conf
 
 # DIRECCIONES:
-		#Port 22
-		#AddressFamily any
-		#ListenAddress 0.0.0.0
-		#ListenAddress ::
+# -------------------
+	#Port 22
+	#AddressFamily any
+	#ListenAddress 0.0.0.0
+	#ListenAddress ::
 
 # HOSTKEYS 
-	#Especificar la ruta donde se almacenará la huella digital del servidor:
-		#HostKey /etc/ssh/ssh_host_rsa_key
-		#HostKey /etc/ssh/ssh_host_ecdsa_key
-		#HostKey /etc/ssh/ssh_host_ed25519_key
+# ----------
+# Especificar la ruta donde se almacenará la huella digital del servidor:
+	#HostKey /etc/ssh/ssh_host_rsa_key
+	#HostKey /etc/ssh/ssh_host_ecdsa_key
+	#HostKey /etc/ssh/ssh_host_ed25519_key
 		
 # CIPHER Y LLAVES 
-	# Configura politicas de longitud y algoritmos aceptables, se debe
-	# deshabilitar algoritmos y longitud de clave no seguros, algunos
-	# Algoritmos seguros recomendados: 
-		#Ciphers AES-256 	 # Cifrado permitido en servidor 
-		#MACs hmac-sha2-256  # Integridad de Mensajes permitidos en servidor
-		#KexAlgorithms diffie-hellman-group-exchange-sha256  # Define intercambio de claves
-		#HostKeyAlgorithms ssh-rsa,ssh-ed25519 # Algoritmos de clave de host que servidor admite
+# ----------------
+# Configura politicas de longitud y algoritmos aceptables, se debe
+# deshabilitar algoritmos y longitud de clave no seguros, algunos
+# Algoritmos seguros recomendados: 
+	#Ciphers AES-256 	 # Cifrado permitido en servidor 
+	#MACs hmac-sha2-256  # Integridad de Mensajes permitidos en servidor
+	#KexAlgorithms diffie-hellman-group-exchange-sha256  # Define intercambio de claves
+	#HostKeyAlgorithms ssh-rsa,ssh-ed25519 # Algoritmos de clave de host que servidor admite
 
-	# Algoritmos definidos segùn necesidades: 
-		#Ciphers aes128-ctr,aes192-ctr,aes256-ctr
-		#KexAlgorithms diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha256
-		#MACs hmac-sha2-512,hmac-sha2-256
-		#HostKeyAlgorithms ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519
+# Algoritmos definidos segùn necesidades: 
+	#Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+	#KexAlgorithms diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha256
+	#MACs hmac-sha2-512,hmac-sha2-256
+	#HostKeyAlgorithms ssh-rsa,ecdsa-sha2-nistp256,ssh-ed25519
 
-	# longitud o tamaño aceptable de claves host generadas por servidor 
-		# un tamaño de bits màs grande significa màs seguro, pero tambièn impacta rendimiento servidor.
-		# Ademàs, es recomendable mantener tamaño bits lo màs reducido posible mientras se mantenga
-		# la seguridad adecuada, para minimizar exposiciòn a vulnerabilidad. 	
-		# tamaño predeterminado 2048
-			#ServerKeyBits 4096
+# longitud o tamaño aceptable de claves host generadas por servidor 
+# un tamaño de bits màs grande significa màs seguro, pero tambièn impacta rendimiento servidor.
+# Ademàs, es recomendable mantener tamaño bits lo màs reducido posible mientras se mantenga
+# la seguridad adecuada, para minimizar exposiciòn a vulnerabilidad. 	
+# tamaño predeterminado 2048
+	#ServerKeyBits 4096
 
 
-	# Crear un proceso de gestión de claves o monitoreo de uso de claves 
-		# para detectar y reemplazar las claves que no cumplan
-		# con las políticas de longitud de clave y algoritmo establecidas o
-		# reemplazarlas cuando sea necesario.
-		# Se establecen límites en la frecuencia y el volumen de las solicitudes 
-		# de rekeying que se pueden enviar durante una sesión SSH.
-		# Esto implica renovaciòn periodica de las claves utilizadas en conexiones SSH.
-		# Este puede consumir recursos significativos del servidor, es importante
-		# establecer lìmites adecuados para evitar sobrecargas del sistema.
-			#RekeyLimit default none
+# Crear un proceso de gestión de claves o monitoreo de uso de claves 
+# para detectar y reemplazar las claves que no cumplan
+# con las políticas de longitud de clave y algoritmo establecidas o
+# reemplazarlas cuando sea necesario.
+# Se establecen límites en la frecuencia y el volumen de las solicitudes 
+# de rekeying que se pueden enviar durante una sesión SSH.
+# Esto implica renovaciòn periodica de las claves utilizadas en conexiones SSH.
+# Este puede consumir recursos significativos del servidor, es importante
+# establecer lìmites adecuados para evitar sobrecargas del sistema.
+	#RekeyLimit default none
 
-	# HABILITAR AUTENTICACION POR LLAVE PUBLICA: 
-		# Esto habilitará la autenticación mediante clave pública para las conexiones SSH. 
-		# Asegúrese de que esté establecida en "yes". 
-			#PubkeyAuthentication yes
+# HABILITAR AUTENTICACION POR LLAVE PUBLICA: 
+# Esto habilitará la autenticación mediante clave pública para las conexiones SSH. 
+# Asegúrese de que esté establecida en "yes". 
+	#PubkeyAuthentication yes
 	
-	# HABILITAR AUTENTICACION POR CONTRASENA: 
-		# Esto habilitará la autenticación de contraseña para las conexiones SSH. 
-		# asegúrese de que esté establecida en "yes". 
-			#PasswordAuthentication yes
-			#PermitEmptyPasswords no
+# HABILITAR AUTENTICACION POR CONTRASENA: 
+# Esto habilitará la autenticación de contraseña para las conexiones SSH. 
+# asegúrese de que esté establecida en "yes". 
+	#PasswordAuthentication yes
+	#PermitEmptyPasswords no
 
-# Establecer un directorio donde se almacenarán las claves de identidad aprobada. Este archivo debe tener permisos de lectura solo para el usuario y grupo roo
+# Establecer un directorio donde se almacenarán las claves de identidad aprobada. Este archivo debe tener permisos de lectura solo para el usuario y grupo
 	#AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
 	#AuthorizedKeysFile %h/.ssh/authorized_keys
-	#AuthorizedPrincipalsFile none
+	#AuthorizedPrincipalsFile none 		# La línea "AuthorizedPrincipalsFile" se establece en "none" para desactivar la verificación de los principios autorizados.
 		
 # REGISTROS Y AUDITORIA: 
-	# Se recomienda mover a carpeta a lugar seguro y fàcil acceso
-	# para su posterior auditoria, de esta manera se puede
-	# configurar un sistema de seguimiento y anàlisis de registros
-		#AuditLog yes
-		#SyslogFacility AUTH
-		#LogLevel INFO 	# LogLevel {VERBOSE, DEBUG, INFO}
-		#ForceCommand mv log.txt ~/Documents 
+# ----------------------
+# Se recomienda mover a carpeta a lugar seguro y fàcil acceso
+# para su posterior auditoria, de esta manera se puede
+# configurar un sistema de seguimiento y anàlisis de registros
+	#AuditLog yes
+	#SyslogFacility AUTH
+	#LogLevel INFO 	# LogLevel {VERBOSE, DEBUG, INFO}
+	#ForceCommand mv log.txt ~/Documents 
 	
 
 # PARÀMETROS DE AUTENTICACION:
-		#LoginGraceTime 2m
-		#PermitRootLogin prohibit-password
-		#StrictModes yes
-		#MaxAuthTries 6
-		#MaxSessions 10
+# ----------------------------
+	#LoginGraceTime 2m
+	#PermitRootLogin prohibit-password
+	#StrictModes yes
+	#MaxAuthTries 6
+	#MaxSessions 10
+		
 
 # ESPECIFICAR USUARIOS GRUPOS Y PERMISOS: 
-		#DenyUsers bichoj
-		#AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
+# ----------------------------------------
+	#DenyUsers bichoj
+	#AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
+		
 
 # ESPECIFICAR GRUPOS Y PERMISOS:
-		#DenyGroups
-		#AllowGroups
+# -------------------------------
+	#DenyGroups
+	#AllowGroups
+		
 
 # SISTEMA DE DETECCION DE INTRUSOS (IDS) PARA MONITOREAR [USUARIOS, GRUPOS]: 
-	# Para este se debe de tener activo el registro de eventos LogLevel VERBOSE
-	# Ademàs se debe de tener especificada la ubicaciòn del archivo de registro de eventos
-	# La siguientes lìneas de configuraciòn habilitan la ejecuciòn del comando AuthorizedKeysCommand
-	# para ejecutar un Script personalizado cada que el usuario inicia al servidor.
-	# el script contiene la lògica para verificar si el usuario que inicia sesiòn es
-	# un usuario o grupo autorizado. Si no està autorizado, el script registra un evento y rechaza
-	# la conexiòn
-		#AuthorizedKeysCommand /usr/local/bin/check-ssh-user.sh
-		#AuthorizedKeysCommandUser nobody
+# ---------------------------------------------------------------------------
+# Para este se debe de tener activo el registro de eventos LogLevel VERBOSE
+# Ademàs se debe de tener especificada la ubicaciòn del archivo de registro de eventos
+# La siguientes lìneas de configuraciòn habilitan la ejecuciòn del comando AuthorizedKeysCommand
+# para ejecutar un Script personalizado cada que el usuario inicia al servidor.
+# el script contiene la lògica para verificar si el usuario que inicia sesiòn es
+# un usuario o grupo autorizado. Si no està autorizado, el script registra un evento y rechaza
+# la conexiòn
+	#AuthorizedKeysCommand /usr/local/bin/check-ssh-user.sh
+	#AuthorizedKeysCommandUser nobody
 
 
 # ESPECIFICAR ACCIONES QUE INICIAN LUEGO DE AUTENTICAR: 
-	# Al ejecutar el comando ForceCommand puede realizar acciones de terminal o ejecutar scripts
-	# adicionalmente, al finalizar la instrucciòn en lugar de permitir que el usuario interactúe con 
-	# el sistema la la sesiòn es terminada automaticamente. 
-		#ForceCommand /home/bichoj/desktop
-		#ForceCommand internal-sftp
-		#ForceCommand /bin/bash -ic $SSH_ORIGINAL_COMMAND ls
-		#ForceCommand /bin/bash -s < $SSH_ORIGINAL_COMMAND
-		#ForceCommand /bin/bash -c $SSH_ORIGINAL_COMMAND
-		#ForceCommand /usr/sbin/pingid_fc
-		#ForceCommand /bin/echo 'Funciona la restricciòn.'
-	# para evitar que termine la sesiòn automaticamente se incluyen las opciones
-		#ForceCommand /bin/bash 'Funciona la restricciòn'; exec bash -l
-		#ForceCommand /bin/bash ./Desktop/bash_codes/script_personalizado.sh; exec bash -l
-	# tambièn se puede utilizar el comando AuthorizedKeyCommand, permite continuar la sesiòn
-		#AuthorizedKeysCommand /usr/local/bin/check-ssh-user.sh
+# ------------------------------------------------------
+# Al ejecutar el comando ForceCommand puede realizar acciones de terminal o ejecutar scripts
+# adicionalmente, al finalizar la instrucciòn en lugar de permitir que el usuario interactúe con 
+# el sistema la la sesiòn es terminada automaticamente. 
+	#ForceCommand /home/bichoj/desktop
+	#ForceCommand internal-sftp
+	#ForceCommand /bin/bash -ic $SSH_ORIGINAL_COMMAND ls
+	#ForceCommand /bin/bash -s < $SSH_ORIGINAL_COMMAND
+	#ForceCommand /bin/bash -c $SSH_ORIGINAL_COMMAND
+	#ForceCommand /usr/sbin/pingid_fc
+	#ForceCommand /bin/echo 'Funciona la restricciòn.'
 
-# ESTABLECER RUTA CLAVES AUTORIZADAS Y REGLAS EXPIRACION:
+# para evitar que termine la sesiòn automaticamente se incluyen las opciones
+	#ForceCommand /bin/bash 'Funciona la restricciòn'; exec bash -l
+	#ForceCommand /bin/bash ./Desktop/bash_codes/script_personalizado.sh; exec bash -l
+
+# tambièn se puede utilizar el comando AuthorizedKeyCommand, permite continuar la sesiòn
+	#AuthorizedKeysCommand /tu/ruta/script.sh
+
+
+# ESTABLECER SISTEMA DE REVOCACION DE CLAVES:
+# --------------------------------------------
+	#RevokedKeys /etc/ssh/revoked_keys
+	
+	
+# ESTABLECER RUTA CLAVES AUTORIZADAS, REGLAS EXPIRACION DE CLAVES:
+# -----------------------------------------------------------------
 	#AuthorizedKeysCommand /usr/bin/authorizedkeys_command.sh %u # La opción %u se utiliza para pasar el nombre de usuario al script como argumento.
 	#AuthorizedKeysCommand none
-
-# ESTABLECER USUARIO QUE EJECUTA COMANDO:
+	#AuthorizedPrincipalsFile none
+		
+# ESTABLECER USUARIO QUE EJECUTA COMANDO
+# ----------------------------------------
 	#AuthorizedKeysCommandUser nobody
-	
-# ESTABLECER SISTEMA DE REVOCACION DE CLAVES:
-	# Definir
+		
 	
 # MONITOREAR EL USO DE LAS CLAVES Y REVOCAR EN CASOS SOSPECHOSOS E INTENTOS DE ATAQUE: 
-	# Definir
+# ------------------------------------------------------------------------------------
+	# El script se ejecutará como un proceso en segundo plano, de modo que se mantendrá en ejecución incluso después de que 
+	# se cierre la sesión de SSH. Para ejecutar este script, se debe agregar la siguiente línea al archivo sshd_config:
+	#ForceCommand /ruta/al/script/monitoreo_claves.sh
+	
+	
 
 # PERMITIR CONEXION DEL HOST 
+# ----------------------------
 	#PermitOpen 192.168.1.10:22
+	
+	
 
 # HABILITAR TUNELES: 
-	# Para deshabilitar la creaciòn de tuneles establecer "no"
-		#PermitTunnel no
+# ---------------------
+# Para deshabilitar la creaciòn de tuneles establecer "no"
+	#PermitTunnel no
 # PARA QUE FUNCIONEN LOS TUNELES: 
-	# Necesita tener las llaves en la ruta /etc/ssh/ssh_known_hosts
-		#HostbasedAuthentication no
-	# Cambiar a "yes" si no confia ~/.ssh/known_hosts 
-		# HostbasedAuthentication
-		#IgnoreUserKnownHosts no
-	#Para no leer los archivos ~/.rhosts y ~/.shosts del usuario
-		#IgnoreRhosts yes
+# Necesita tener las llaves en la ruta /etc/ssh/ssh_known_hosts
+	#HostbasedAuthentication no
+# Cambiar a "yes" si no confia ~/.ssh/known_hosts 
+	# HostbasedAuthentication
+	#IgnoreUserKnownHosts no
+# Para no leer los archivos ~/.rhosts y ~/.shosts del usuario
+	#IgnoreRhosts yes
 
 
-# Change to yes to enable challenge-response passwords (beware issues with
-# some PAM modules and threads)
-	KbdInteractiveAuthentication no
+# Cambia a yes para habilitar contraseñas challenge-response (cuidado con algunos módulos e hilos PAM)
+##KbdInteractiveAuthentication no
 
 # OPCIONES KERBEROS: 
+# -------------------
 	#KerberosAuthentication no
 	#KerberosOrLocalPasswd yes
 	#KerberosTicketCleanup yes
 	#KerberosGetAFSToken no
 
 # OPCIONES GSSAPI:
+# -------------------
 	#GSSAPIAuthentication no
 	#GSSAPICleanupCredentials yes
 	#GSSAPIStrictAcceptorCheck yes
 	#GSSAPIKeyExchange no
 
-# Set this to 'yes' to enable PAM authentication, account processing,
-# and session processing. If this is enabled, PAM authentication will
-# be allowed through the KbdInteractiveAuthentication and
-# PasswordAuthentication.  Depending on your PAM configuration,
-# PAM authentication via KbdInteractiveAuthentication may bypass
-# the setting of "PermitRootLogin without-password".
-# If you just want the PAM account and session checks to run without
-# PAM authentication, then enable this but set PasswordAuthentication
-# and KbdInteractiveAuthentication to 'no'.
-	UsePAM yes
 
-# OPCIONES VARIADAS: 
+# Configure esto en 'sí' para habilitar la autenticación PAM, el procesamiento de cuentas,
+# y procesamiento de sesiones. Si esto está habilitado, la autenticación PAM
+# será permitida a través de KbdInteractiveAuthentication y
+# PasswordAuthentication. Según la configuración de su PAM,
+# La autenticación PAM a través de KbdInteractiveAuthentication puede pasar por alto
+# la configuración de "PermitRootLogin without-password".
+# Si solo desea que la cuenta PAM y las verificaciones de sesión se ejecuten sin
+# Autenticación PAM, habilite esto pero configure PasswordAuthentication
+# y KbdInteractiveAuthentication a 'no'.
+##UsePAM yes
+
+# OPCIONES VARIADAS:
+# ----------------------------
 	#AllowAgentForwarding yes
 	#AllowTcpForwarding yes
 	#GatewayPorts no
-	X11Forwarding yes
+##X11Forwarding yes
 	#X11DisplayOffset 10
 	#X11UseLocalhost yes
 	#PermitTTY yes
-	PrintMotd no
+##PrintMotd no
 	#PrintLastLog yes
 	#TCPKeepAlive yes
 	#PermitUserEnvironment no
@@ -202,34 +236,127 @@
 	#ChrootDirectory none
 	#VersionAddendum none
 
-# no default banner path
+# BANNER
+# ---------
+# se utiliza para mostrar un mensaje de bienvenida personalizado antes de que un usuario 
+# inicie sesión en un servidor SSH. Este mensaje puede ser utilizado para informar 
+# a los usuarios sobre políticas de seguridad, términos y condiciones de uso, o cualquier 
+# otra información relevante.
+# Sin ruta definida para el banner 	
 	#Banner none
-
+# Ruta definida para el banner
+	#Banner /etc/ssh/banner.txt
+	
+	
 # Allow client to pass locale environment variables
-	AcceptEnv LANG LC_*
+##AcceptEnv LANG LC_*
 
 # override default of no subsystems
-	Subsystem	sftp	/usr/lib/openssh/sftp-server
+##Subsystem	sftp	/usr/lib/openssh/sftp-server
+	
 
-#----------------------------------------------------------------------------------------------------------
-# CONFIGURACION EJMEPLO
-#----------------------------------------------------------------------------------------------------------
-# Example of overriding settings on a per-user basis
-#Match User anoncvs
+# #########################################################################################################
+# # 	CONFIGURACION DE EJMEPLO
+# ========================================================================================================
+# Ejemplo de sobre escritura de configuración por usuario
+# ----------------------------------------------------
+# Match User anoncvs
 #	X11Forwarding no
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+# --------------------------------------------------------------------------------------------------------
+
+# #########################################################################################################
+# #
+# # 	CONFIGURACIONES SEGÚN CRITERIOS NIST 	
+# #		Y AMBIENTES DEFINIDOS
+# #
+# ========================================================================================================
+
+# ESCENARIO 1: 
+# ------------
+# 	Configuraciones servidor SSH predeterminadas instalación para 4 máquinas
+#		| Servidor |  1  |
+# 		| Clientes |  3  |
+# 		| Servicio | SFTP| Predeterminado
+#
+# 	NOTA: En esta configuración no se utiliza el match dado que es la configuración inicial o predeterminada al instalar OpenSSH
+#
+	Include /etc/ssh/sshd_config.d/*.conf
+	KbdInteractiveAuthentication no
+	UsePAM yes
+	X11Forwarding yes
+	PrintMotd no
+	AcceptEnv LANG LC_*
+	Subsystem	sftp	/usr/lib/openssh/sftp-server
+	
+#
+#
+# -------------------------------------------------------------------------------------------------------
+# #########################################################################################################
+
+# ESCENARIO 2: 
+# ------------
+# 	Configuraciones servidor SSH específicas instalación para 4 grupos de usuarios y 3 servicios
+#
+#	------------------------------------------
+#	|Tipo		| Nombre      		|Cantidad|
+#	| Usuario	| Anonimo	      	|   1    |
+# 	| Usuario	| Administrador 	|   1    |
+#	| Grupo		| Soporte 			|   1    |
+# 	| Grupo		| Backup 			|   1    |
+# 	| Grupo		| Clientes 			|   2    |
+# 	| Servicio 	|  Email 			|   1    |
+# 	| Servicio 	|   DB   			|   1    |
+# 	| Servicio  |   SFPT 			|   1    |
+#   ------------------------------------------	
+#
+# Parámetros:
+#	[X] Puerto de escucha de SSH al 543. 
+# 	[X] Máximo número de intentos de autenticar sesión 3. 
+#	[X] Tiempo de espera antes de que un cliente pueda volver a intentar la autenticación 30 segundos. 
+#	[-] Restringe los permisos del directorio de inicio del usuario a grupo clientes y soporte. 
+#	[-] Restringir cifrados y algoritmos de clave a grupo clientes y backup con Ciphers aes256-ctr,aes192-ctr,aes128-ctr 
+#	[ ] Restringir la lista de MAC e IP para que sólo acceda a la cuenta de administración desde una máquina, las restantes, cuentas predeterminadas con roles administrativos, deben estar deshabilitadas. 
+# 
+# #########################################################################################################
 
 
-#----------------------------------------------------------------------------------------------------------
-# CONFIGURACIONES RECOMENDADAS NIST Address *,!192.168.x.x
-#----------------------------------------------------------------------------------------------------------
- Match User bichoj 
-# 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
-#	DenyUsers backup soporte administracion
-#	ForceCommand internal-sftp 
+# Main Body (GLOBALES), 
+# son aquellos paràmetros que aplican a todos los usuarios, se recomienda utilizarlos de 
+# forma global y evitar utilizarlos dentro del bloque Match User X.
+	Port 543  
+	LoginGraceTime 30s
+	ForceCommand internal-sftp; exec bash -l 
+	#Subsystem       sftp    internal-sftp
+	Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+	
+#AllowGroups clientes
+#AllowUsers soporte backup
+#DenyUsers administrador
+
+Match User bichoj
+	MaxAuthTries 3
+	MaxSessions 10
 	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+#	ForceCommand /bin/bash ./Desktop/bash_codes/sftp-setup.sh; exec bash -l #(ERROR)
+# 	PasswordAuthentication no
+#	PermitRootLogin prohibit-password
+#	AllowTcpForwarding yes
+#	StrictModes yes
+#       AllowAgentForwarding yes
+#       PermitListen 127.0.0.1:2223
+#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
+
+
+Match User test-guest-1
+	ChrootDirectory /home/bichoj/
+	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+# Match Address !192.168.x.x
+# 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3 backup soporte administrador
+#	ForceCommand internal-sftp 
+#	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
 # 	PasswordAuthentication no
 #	PermitRootLogin prohibit-password
 #	AllowTcpForwarding yes
@@ -240,7 +367,28 @@
 #       AllowAgentForwarding yes
 #       PermitListen 127.0.0.1:2223
 #       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
-	
+
+#
+#
+
+# Match User bichoj 
+# 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
+#	DenyUsers backup soporte administracion
+#	ForceCommand internal-sftp 
+#	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+# 	PasswordAuthentication no
+#	PermitRootLogin prohibit-password
+#	AllowTcpForwarding yes
+#	LoginGraceTime 2m
+#	StrictModes yes
+#	MaxAuthTries 6
+#	MaxSessions 10
+#       AllowAgentForwarding yes
+#       PermitListen 127.0.0.1:2223
+#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
+
+#
+#
 
 # Match User test-guest-1 test-guest-2
 # 	ForceCommand /bin/bash 'FECHA=$(date +'%d/%m/%Y')'
@@ -255,4 +403,9 @@
 # 	PasswordAuthentication yes
 #	ForceCommand /bin/bash 'FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
 #	ForceCommand /bin/echo 'Ingreso normal detectado'
+# Match Address *,!192.168.x.x
+#
+#
+#
+# -------------------------------------------------------------------------------------------------------
 
