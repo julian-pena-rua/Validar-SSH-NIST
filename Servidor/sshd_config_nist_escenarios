@@ -304,21 +304,21 @@
 #	|Tipo		| Nombre      		|Cantidad|
 #	| Usuario	| Anonimo	      	|   1    |
 # 	| Usuario	| Administrador 	|   1    |
-#	| Grupo		| Soporte 			|   1    |
-# 	| Grupo		| Backup 			|   1    |
-# 	| Grupo		| Clientes 			|   2    |
-# 	| Servicio 	|  Email 			|   1    |
-# 	| Servicio 	|   DB   			|   1    |
-# 	| Servicio  |   SFPT 			|   1    |
+#	| Grupo		| Soporte 		|   1    |
+# 	| Grupo		| Backup 		|   1    |
+# 	| Grupo		| Clientes 		|   2    |
+# 	| Servicio 	|  Email 		|   1    |
+# 	| Servicio 	|   DB   		|   1    |
+# 	| Servicio  	|   SFPT 		|   1    |
 #   ------------------------------------------	
 #
 # Parámetros:
-#	[X] Puerto de escucha de SSH al 543. 
-# 	[X] Máximo número de intentos de autenticar sesión 3. 
-#	[X] Tiempo de espera antes de que un cliente pueda volver a intentar la autenticación 30 segundos. 
-#	[-] Restringe los permisos del directorio de inicio del usuario a grupo clientes y soporte. 
-#	[-] Restringir cifrados y algoritmos de clave a grupo clientes y backup con Ciphers aes256-ctr,aes192-ctr,aes128-ctr 
-#	[ ] Restringir la lista de MAC e IP para que sólo acceda a la cuenta de administración desde una máquina, las restantes, cuentas predeterminadas con roles administrativos, deben estar deshabilitadas. 
+#	1. [X] Puerto de escucha de SSH al 543. 
+# 	2. [X] Máximo número de intentos de autenticar sesión 3. 
+#	3. [X] Tiempo de espera antes de que un cliente pueda volver a intentar la autenticación 30 segundos. 
+#	4. [-] Restringe los permisos del directorio de inicio del usuario a grupo clientes y soporte. 
+#	5. [-] Restringir cifrados y algoritmos de clave a grupo clientes y backup con Ciphers aes256-ctr,aes192-ctr,aes128-ctr 
+#	6. [ ] Restringir la lista de MAC e IP para que sólo acceda a la cuenta de administración desde una máquina, las restantes, cuentas predeterminadas con roles administrativos, deben estar deshabilitadas. 
 # 
 # #########################################################################################################
 
