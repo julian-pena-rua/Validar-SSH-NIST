@@ -353,6 +353,10 @@ Match User bichoj
 Match User test-guest-1
 	ChrootDirectory /home/bichoj/
 	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+	
+# =======================================================================================================	
+# = ALGUNOS EJEMPLOS DE CONFIGURACIONES	
+# =======================================================================================================
 # Match Address !192.168.x.x
 # 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3 backup soporte administrador
 #	ForceCommand internal-sftp 
@@ -371,7 +375,7 @@ Match User test-guest-1
 #
 #
 
-# Match User bichoj 
+# Match User anonimous 
 # 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
 #	DenyUsers backup soporte administracion
 #	ForceCommand internal-sftp 
@@ -390,7 +394,7 @@ Match User test-guest-1
 #
 #
 
-# Match User test-guest-1 test-guest-2
+# Match User test test2
 # 	ForceCommand /bin/bash 'FECHA=$(date +'%d/%m/%Y')'
 #	ForceCommand /bin/echo 'conectado desde sesiòn invitado'
 #	ForceCommand /bin/bash '$FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
@@ -399,7 +403,7 @@ Match User test-guest-1
 #       PermitOpen 192.168.10.2
 
 
-# Match Group usuarios_no_ssh
+# Match Group usuario_no_ssh
 # 	PasswordAuthentication yes
 #	ForceCommand /bin/bash 'FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
 #	ForceCommand /bin/echo 'Ingreso normal detectado'
