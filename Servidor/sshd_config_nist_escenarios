@@ -256,7 +256,7 @@
 	
 
 # #########################################################################################################
-# # 	CONFIGURACION DE EJMEPLO
+# # 	CONFIGURACION DE EJEMPLO
 # ========================================================================================================
 # Ejemplo de sobre escritura de configuración por usuario
 # ----------------------------------------------------
@@ -266,6 +266,66 @@
 #	PermitTTY no
 #	ForceCommand cvs server
 # --------------------------------------------------------------------------------------------------------
+
+# =======================================================================================================	
+# = OTROS EJEMPLOS DE CONFIGURACIONES	
+# =======================================================================================================
+# Match Address !192.168.x.x
+# 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3 backup soporte administrador
+#	ForceCommand internal-sftp 
+#	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+# 	PasswordAuthentication no
+#	PermitRootLogin prohibit-password
+#	AllowTcpForwarding yes
+#	LoginGraceTime 2m
+#	StrictModes yes
+#	MaxAuthTries 6
+#	MaxSessions 10
+#       AllowAgentForwarding yes
+#       PermitListen 127.0.0.1:2223
+#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
+
+#
+#
+
+# Match User anonimous 
+# 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
+#	DenyUsers backup soporte administracion
+#	ForceCommand internal-sftp 
+#	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+# 	PasswordAuthentication no
+#	PermitRootLogin prohibit-password
+#	AllowTcpForwarding yes
+#	LoginGraceTime 2m
+#	StrictModes yes
+#	MaxAuthTries 6
+#	MaxSessions 10
+#       AllowAgentForwarding yes
+#       PermitListen 127.0.0.1:2223
+#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
+
+#
+#
+
+# Match User test test2
+# 	ForceCommand /bin/bash 'FECHA=$(date +'%d/%m/%Y')'
+#	ForceCommand /bin/echo 'conectado desde sesiòn invitado'
+#	ForceCommand /bin/bash '$FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
+# 	PasswordAuthentication no
+# 	PermitTunnel no
+#       PermitOpen 192.168.10.2
+
+
+# Match Group usuario_no_ssh
+# 	PasswordAuthentication yes
+#	ForceCommand /bin/bash 'FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
+#	ForceCommand /bin/echo 'Ingreso normal detectado'
+# Match Address *,!192.168.x.x
+#
+#
+#
+# -------------------------------------------------------------------------------------------------------
+
 
 # #########################################################################################################
 # #
@@ -354,62 +414,4 @@ Match User test-guest-1
 	ChrootDirectory /home/bichoj/
 	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
 	
-# =======================================================================================================	
-# = ALGUNOS EJEMPLOS DE CONFIGURACIONES	
-# =======================================================================================================
-# Match Address !192.168.x.x
-# 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3 backup soporte administrador
-#	ForceCommand internal-sftp 
-#	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
-# 	PasswordAuthentication no
-#	PermitRootLogin prohibit-password
-#	AllowTcpForwarding yes
-#	LoginGraceTime 2m
-#	StrictModes yes
-#	MaxAuthTries 6
-#	MaxSessions 10
-#       AllowAgentForwarding yes
-#       PermitListen 127.0.0.1:2223
-#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
-
-#
-#
-
-# Match User anonimous 
-# 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3
-#	DenyUsers backup soporte administracion
-#	ForceCommand internal-sftp 
-#	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
-# 	PasswordAuthentication no
-#	PermitRootLogin prohibit-password
-#	AllowTcpForwarding yes
-#	LoginGraceTime 2m
-#	StrictModes yes
-#	MaxAuthTries 6
-#	MaxSessions 10
-#       AllowAgentForwarding yes
-#       PermitListen 127.0.0.1:2223
-#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
-
-#
-#
-
-# Match User test test2
-# 	ForceCommand /bin/bash 'FECHA=$(date +'%d/%m/%Y')'
-#	ForceCommand /bin/echo 'conectado desde sesiòn invitado'
-#	ForceCommand /bin/bash '$FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
-# 	PasswordAuthentication no
-# 	PermitTunnel no
-#       PermitOpen 192.168.10.2
-
-
-# Match Group usuario_no_ssh
-# 	PasswordAuthentication yes
-#	ForceCommand /bin/bash 'FECHA - HORA - USUARIO - IP - Conexion aprobada' >> registro_auth.txt
-#	ForceCommand /bin/echo 'Ingreso normal detectado'
-# Match Address *,!192.168.x.x
-#
-#
-#
-# -------------------------------------------------------------------------------------------------------
 
