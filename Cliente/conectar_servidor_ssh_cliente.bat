@@ -100,6 +100,7 @@
 
 	start plink.exe -ssh -t -P %port% %username%@%hostname% -pw %password%
 	::start plink.exe -ssh -t -P 543 test-guest-1@192.168.214.128 -pw aqIJ@MEw@xOct
+	::start plink.exe -ssh -t -P 543 javier@192.168.214.128 -pw 123456789
 	
 
 

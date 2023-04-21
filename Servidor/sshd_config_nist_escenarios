@@ -252,7 +252,7 @@
 ##AcceptEnv LANG LC_*
 
 # override default of no subsystems
-##Subsystem	sftp	/usr/lib/openssh/sftp-server
+#Subsystem	sftp	/usr/lib/openssh/sftp-server
 	
 
 # #########################################################################################################
@@ -267,92 +267,8 @@
 #	ForceCommand cvs server
 # --------------------------------------------------------------------------------------------------------
 
-# #########################################################################################################
-# #
-# # 	CONFIGURACIONES SEGÚN CRITERIOS NIST 	
-# #		Y AMBIENTES DEFINIDOS
-# #
-# ========================================================================================================
 
-# ESCENARIO 1: 
-# ------------
-# 	Configuraciones servidor SSH predeterminadas instalación para 4 máquinas
-#		| Servidor |  1  |
-# 		| Clientes |  3  |
-# 		| Servicio | SFTP| Predeterminado
-#
-# 	NOTA: En esta configuración no se utiliza el match dado que es la configuración inicial o predeterminada al instalar OpenSSH
-#
-	Include /etc/ssh/sshd_config.d/*.conf
-	KbdInteractiveAuthentication no
-	UsePAM yes
-	X11Forwarding yes
-	PrintMotd no
-	AcceptEnv LANG LC_*
-	Subsystem	sftp	/usr/lib/openssh/sftp-server
 	
-#
-#
-# -------------------------------------------------------------------------------------------------------
-# #########################################################################################################
-
-# ESCENARIO 2: 
-# ------------
-# 	Configuraciones servidor SSH específicas instalación para 4 grupos de usuarios y 3 servicios
-#
-#	------------------------------------------
-#	|Tipo		| Nombre      		|Cantidad|
-#	| Usuario	| Anonimo	      	|   1    |
-# 	| Usuario	| Administrador 	|   1    |
-#	| Grupo		| Soporte 			|   1    |
-# 	| Grupo		| Backup 			|   1    |
-# 	| Grupo		| Clientes 			|   2    |
-# 	| Servicio 	|  Email 			|   1    |
-# 	| Servicio 	|   DB   			|   1    |
-# 	| Servicio  |   SFPT 			|   1    |
-#   ------------------------------------------	
-#
-# Parámetros:
-#	[X] Puerto de escucha de SSH al 543. 
-# 	[X] Máximo número de intentos de autenticar sesión 3. 
-#	[X] Tiempo de espera antes de que un cliente pueda volver a intentar la autenticación 30 segundos. 
-#	[-] Restringe los permisos del directorio de inicio del usuario a grupo clientes y soporte. 
-#	[-] Restringir cifrados y algoritmos de clave a grupo clientes y backup con Ciphers aes256-ctr,aes192-ctr,aes128-ctr 
-#	[ ] Restringir la lista de MAC e IP para que sólo acceda a la cuenta de administración desde una máquina, las restantes, cuentas predeterminadas con roles administrativos, deben estar deshabilitadas. 
-# 
-# #########################################################################################################
-
-
-# Main Body (GLOBALES), 
-# son aquellos paràmetros que aplican a todos los usuarios, se recomienda utilizarlos de 
-# forma global y evitar utilizarlos dentro del bloque Match User X.
-	Port 543  
-	LoginGraceTime 30s
-	ForceCommand internal-sftp; exec bash -l 
-	#Subsystem       sftp    internal-sftp
-	Ciphers aes128-ctr,aes192-ctr,aes256-ctr
-	
-#AllowGroups clientes
-#AllowUsers soporte backup
-#DenyUsers administrador
-
-Match User bichoj
-	MaxAuthTries 3
-	MaxSessions 10
-	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
-#	ForceCommand /bin/bash ./Desktop/bash_codes/sftp-setup.sh; exec bash -l #(ERROR)
-# 	PasswordAuthentication no
-#	PermitRootLogin prohibit-password
-#	AllowTcpForwarding yes
-#	StrictModes yes
-#       AllowAgentForwarding yes
-#       PermitListen 127.0.0.1:2223
-#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
-
-
-Match User test-guest-1
-	ChrootDirectory /home/bichoj/
-	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
 # Match Address !192.168.x.x
 # 	AllowUsers test-admin-1 test-guest-1 test-guest-2 test-guest-3 backup soporte administrador
 #	ForceCommand internal-sftp 
@@ -409,3 +325,118 @@ Match User test-guest-1
 #
 # -------------------------------------------------------------------------------------------------------
 
+# #########################################################################################################
+# #
+# # 	CONFIGURACIONES SEGÚN CRITERIOS NIST 	
+# #		Y AMBIENTES DEFINIDOS
+# #
+# ========================================================================================================
+
+# ESCENARIO 1: 
+# ------------
+# 	Configuraciones servidor SSH predeterminadas instalación para 4 máquinas
+#		| Servidor |  1  |
+# 		| Clientes |  3  |
+# 		| Servicio | SFTP| Predeterminado
+#
+# 	NOTA: En esta configuración no se utiliza el match dado que es la configuración inicial o predeterminada al instalar OpenSSH
+#
+	#Include /etc/ssh/sshd_config.d/*.conf
+	#KbdInteractiveAuthentication no
+	#UsePAM yes
+	#X11Forwarding yes
+	#PrintMotd no
+	#AcceptEnv LANG LC_*
+	#Subsystem	sftp	/usr/lib/openssh/sftp-server
+	#Subsystem 	sftp	internal-sftp
+	
+#
+#
+# -------------------------------------------------------------------------------------------------------
+# #########################################################################################################
+
+# ESCENARIO 2: 
+# ------------
+# 	Configuraciones servidor SSH específicas instalación para 4 grupos de usuarios y 3 servicios
+#
+#	------------------------------------------
+#	|Tipo		| Nombre    	  		|Cantidad|
+#	| Usuario	| Anonimo		      	|   1    |
+# 	| Usuario	| Administrador 		|   1    |
+#	| Grupo		| Soporte 			|   1    |
+# 	| Grupo		| Backup 			|   1    |
+# 	| Grupo		| Clientes 			|   2    |
+# 	| Servicio 	|  Email 			|   1    |
+# 	| Servicio 	|   DB   			|   1    |
+# 	| Servicio  	|   SFPT 			|   1    |
+#   ------------------------------------------	
+#
+# Parámetros:
+#	[X] Puerto de escucha de SSH al 543. 
+# 	[X] Máximo número de intentos de autenticar sesión 3. 
+#	[X] Tiempo de espera antes de que un cliente pueda volver a intentar la autenticación 30 segundos. 
+#	[-] Restringe los permisos del directorio de inicio del usuario a grupo clientes y soporte. 
+#	[-] Restringir cifrados y algoritmos de clave a grupo clientes y backup con Ciphers aes256-ctr,aes192-ctr,aes128-ctr 
+#	[ ] Restringir la lista de MAC e IP para que sólo acceda a la cuenta de administración desde una máquina, las restantes, cuentas predeterminadas con roles administrativos, deben estar deshabilitadas. 
+# 
+# #########################################################################################################
+
+
+# Main Body (GLOBALES), 
+# son aquellos paràmetros que aplican a todos los usuarios, se recomienda utilizarlos de 
+# forma global y evitar utilizarlos dentro del bloque Match User X.
+	Include /etc/ssh/sshd_config.d/*.conf
+	KbdInteractiveAuthentication no
+	UsePAM yes
+	X11Forwarding yes
+	PrintMotd no
+	AcceptEnv LANG LC_*
+
+	Subsystem 	sftp	internal-sftp
+	#Subsystem	sftp	/usr/lib/openssh/sftp-server
+	#ForceCommand internal-sftp; exec bash -l 
+
+	Port 543  
+	LoginGraceTime 30s
+
+	Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+	
+#AllowGroups clientes
+#AllowUsers soporte backup
+#DenyUsers administrador
+
+Match User bichoj
+	MaxAuthTries 3
+	MaxSessions 10
+	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+#	ForceCommand /bin/bash ./Desktop/bash_codes/sftp-setup.sh; exec bash -l #(ERROR)
+# 	PasswordAuthentication no
+#	PermitRootLogin prohibit-password
+#	AllowTcpForwarding yes
+#	StrictModes yes
+#       AllowAgentForwarding yes
+#       PermitListen 127.0.0.1:2223
+#       AcceptEnv RESTIC_REPOSITORY RESTIC_PASSWORD
+
+
+#Match User jack
+	MaxAuthTries 3
+	MaxSessions 10
+	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+
+#Match User test-guest-1
+	#ChrootDirectory %h
+	#ForceCommand internal-sftp
+	#AllowTCPForwarding no
+	#X11Forwarding no
+	#ChrootDirectory /home/test-guest-1
+	#ForceCommand /bin/bash ./archivos/copiar_archivos.sh; exec bash -l
+
+# --------------------------------------------------------------------
+# # = GENERADO POR SCRIPT
+# --------------------------------------------------------------------
+Match Group sftp_users 
+	ForceCommand internal-sftp 
+	ChrootDirectory /home/%u/sftp_users 
+	X11Forwarding no 
+	AllowTcpForwarding no 
