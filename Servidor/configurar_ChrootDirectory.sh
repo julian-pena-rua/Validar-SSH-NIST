@@ -111,7 +111,7 @@ else
 	echo '# --------------------------------------------------------------------' >> sshd_config
 	echo '# # = GENERADO POR SCRIPT' >> sshd_config
 	echo '# --------------------------------------------------------------------' >> sshd_config
-	echo 'Match Group '$NombreGrupo' \n\tChrootDirectory /home/%u/'$NombreGrupo' \n\tX11Forwarding no \n\tAllowTcpForwarding no \n' >> sshd_config
+	echo 'Match Group '$NombreGrupo' \n\tChrootDirectory '$Prision' \n\tX11Forwarding no \n\tAllowTcpForwarding no \n' >> sshd_config
 	echo "AllowUsers $NombreUsuario" >> sshd_config
 
 	
