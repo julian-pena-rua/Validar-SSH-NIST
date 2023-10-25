@@ -56,7 +56,7 @@ rem Eliminar archivos temporales
     cd ..
 	cd ..
     del ansi189.zip
-    rmdir /s /q ansicon
+    ::rmdir /s /q ansicon
 	
 
     echo La instalación de Ansicon ha finalizado correctamente. El programa se cerrará automaticamente.

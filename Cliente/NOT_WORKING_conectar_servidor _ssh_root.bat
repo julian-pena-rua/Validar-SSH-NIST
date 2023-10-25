@@ -3,7 +3,7 @@
 :: NIVEL: INTERMEDIO
 :: 
 :: AUTOR: 			Julian A. Peña
-:: FECHA: 			26 Febrero 2023
+:: FECHA: 			22 Octubre 2023
 :: VERSIÓN: 		1.0.0
 :: SITIO: 			https://julian-pena-rua.github.io/cv/	
 :: DESCRIPCIÓN:	
@@ -36,7 +36,7 @@
 	set NombreAutor=Julian Andres Peña
 	set Version=1.0.0
 
-	set username=bichoj
+	set username=root
 	set password=123456789
 	set hostname=192.168.214.128
 	set port=
@@ -99,7 +99,6 @@
 	cls
 
 	start plink.exe -ssh -t -P %port% %username%@%hostname% -pw %password%
-	::ssh -p5654 root@179.43.001.99
 
 	timeout /t 2 /nobreak >nul 	
 

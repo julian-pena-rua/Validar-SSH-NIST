@@ -396,7 +396,7 @@
 	#Subsystem	sftp	/usr/lib/openssh/sftp-server
 	#ForceCommand internal-sftp; exec bash -l 
 
-	Port 543  
+	Port 22  
 	LoginGraceTime 30s
 
 	Ciphers aes128-ctr,aes192-ctr,aes256-ctr
@@ -420,9 +420,9 @@ Match User bichoj
 
 
 #Match User jack
-	MaxAuthTries 3
-	MaxSessions 10
-	ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
+	#MaxAuthTries 3
+	#MaxSessions 10
+	#ForceCommand /bin/bash ./Desktop/bash_codes/rutina_1.sh; exec bash -l
 
 #Match User test-guest-1
 	#ChrootDirectory %h
@@ -432,11 +432,21 @@ Match User bichoj
 	#ChrootDirectory /home/test-guest-1
 	#ForceCommand /bin/bash ./archivos/copiar_archivos.sh; exec bash -l
 
+#Match User bichoj
+#	ChrootDirectory /home/bichoj/Desktop/bash_codes
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	ForceCommand internal-sftp
+#	PermitTTY no
+#	ForceCommand cvs server
+
 # --------------------------------------------------------------------
 # # = GENERADO POR SCRIPT
 # --------------------------------------------------------------------
 Match Group sftp_users 
-	ForceCommand internal-sftp 
-	ChrootDirectory /home/%u/sftp_users 
+	ChrootDirectory /home/javier/
 	X11Forwarding no 
 	AllowTcpForwarding no 
+
+AllowUsers javier
+
